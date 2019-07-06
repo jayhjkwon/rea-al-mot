@@ -1,0 +1,12 @@
+.countries button {
+    padding: 15px 30px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.countries button:hover {
+    background-color: #eee;
+}
