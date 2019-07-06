@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Countries from './Countries';
@@ -9,14 +9,17 @@ const countryList = [
   { id: 3, name: 'China' }
 ]
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Countries countryList={countryList} />
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <button className="btn-sort">Sort</button>
+          <Countries countryList={countryList} />
+        </header>
+      </div>
+    )
+  }
 }
 
 export default App;
