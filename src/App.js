@@ -17,16 +17,23 @@ const countryList = [
 */
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <button className="btn-sort">Sort</button>
-          <Countries countryList={countryList} />
-        </header>
-      </div>
-    )
-  }
+    state = {
+        ascending: false
+    }
+    handleClick = () => {
+        this.setState(state => ({ ascending: !state.ascending }))
+    }
+    render() {
+        const sortedCountries = orderBy(countryList, ['name'], [`${this.state.ascending ? 'asc' : 'desc'}`])
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <button className="btn-sort" onClick={this.handleClick}>Sort</button>
+                    <Countries countryList={sortedCountries} />
+                </header>
+            </div>
+        )
+    }
 }
 
 export default App;
