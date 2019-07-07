@@ -8,10 +8,12 @@ const Countries = ({ countryList }) => {
         <div className="countries">
             <ul className="countries__list">
                 {countryList.map(({ id, name }) => 
-                    <li key={id}><Link to={`/countries/${id}`}>{name}</Link></li>
+                    <li key={id}>
+                        <Link to={`/countries/${id}`}>{name}</Link>
+                    </li>
                 )}
             </ul>
-            <Router className="country-details-container">
+            <Router>
                 <CountryDetails path="/countries/:id" countryList={countryList} />
             </Router>
         </div>
