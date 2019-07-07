@@ -1,0 +1,17 @@
+.countries {
+    display: flex;
+}
+
+.countries__list {
+    position: relative;
+    margin-right: 100px;
+}
+
+.countries__list:after {
+    content: ' ';
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    right: -60px;
+    border-left: solid 1px #eee;
+}
