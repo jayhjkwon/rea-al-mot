@@ -1,23 +1,30 @@
 import React from 'react'
-import { Router, Link } from "@reach/router"
-import CountryDetails from './CountryDetails'
-import './Countries.css'
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
-const Countries = ({ countryList }) => {
+const GET_COUNTRIES = gql`
+    query {
+        countries {
+            code
+            name
+            emoji
+        }
+    }
+`;
+
+const Countries = ({ data: { countries, loading } }) => {
     return (
-        <div className="countries">
-            <ul className="countries__list">
-                {countryList.map(({ id, name }) => 
-                    <li key={id}>
-                        <Link to={`/countries/${id}`}>{name}</Link>
-                    </li>
-                )}
-            </ul>
-            <Router>
-                <CountryDetails path="/countries/:id" countryList={countryList} />
-            </Router>
-        </div>
+        <ul>
+            {loading && <div>Loading ...</div>}
+            {countries && countries.slice(0, 10).map(({ code, name, emoji }) => 
+                <li key={code}>
+                    {code} - {name} - {emoji}
+                </li>
+            )}
+        </ul>
     )
 }
 
-export default Countries;
+const CountriesWithQuery = graphql(GET_COUNTRIES)(Countries);
+
+export default CountriesWithQuery;
