@@ -9,12 +9,12 @@ const Countries = ({ countryList }) => {
             <ul className="countries__list">
                 {countryList.map(({ id, name }) => 
                     <li key={id}>
-                        <Link to={`/countries/${id}`}>{name}</Link>
+                        {name}
                     </li>
                 )}
             </ul>
             <Router>
-                <CountryDetails path="/countries/:id" countryList={countryList} />
+                <CountryDetails countryList={countryList} />
             </Router>
         </div>
     )
